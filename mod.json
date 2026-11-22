@@ -1,0 +1,146 @@
+{
+    "$schema": "https://raw.githubusercontent.com/geode-sdk/geode/main/schemas/mod.json",
+    "geode": "5.11.2",
+    "gd": {
+        "win": "2.2081",
+        "android": "2.2081",
+        "mac": "2.2081",
+        "ios": "2.2081"
+    },
+    "id": "sodium.gd-optimizer",
+    "name": "SodiumGD",
+    "version": "v1.0.0",
+    "developer": "SodiumGD",
+    "description": "Ultra-aggressive rendering, particle, shader, and culling optimizer for Geometry Dash — inspired by Sodium for Minecraft.",
+    "tags": [
+        "performance",
+        "utility",
+        "enhancement",
+        "offline"
+    ],
+    "settings": {
+        "preset": {
+            "type": "string",
+            "name": "Optimization Preset",
+            "description": "Quick performance profile. Choose 'Custom' to configure every option individually.",
+            "default": "Balanced",
+            "one-of": [
+                "Custom",
+                "Balanced",
+                "Performance",
+                "Extreme"
+            ]
+        },
+        "title-rendering": {
+            "type": "title",
+            "name": "Rendering & Overdraw"
+        },
+        "no-glow": {
+            "type": "bool",
+            "name": "Disable Object Glow",
+            "description": "Strips additive glow sprites from all level objects. Massive GPU fill-rate & FPS boost.",
+            "default": true
+        },
+        "bypass-shaders": {
+            "type": "bool",
+            "name": "Bypass Level Shaders",
+            "description": "Skips 2.2 ShaderLayer FBO render-to-texture passes and per-frame shader math.",
+            "default": true
+        },
+        "fast-culling": {
+            "type": "bool",
+            "name": "Aggressive Node Culling",
+            "description": "Immediately skips rendering invisible, zero-scale, or zero-opacity nodes before OpenGL matrix transforms.",
+            "default": true
+        },
+        "no-object-effects": {
+            "type": "bool",
+            "name": "Disable Object Enter/Exit Effects",
+            "description": "Forces m_hasNoEffects on all objects to avoid per-frame enter/exit animation math.",
+            "default": false
+        },
+        "hide-bg-ground": {
+            "type": "bool",
+            "name": "Hide Background & Ground",
+            "description": "Hides background, middleground, and ground layers during gameplay to eliminate full-screen overdraw.",
+            "default": false
+        },
+        "title-objects": {
+            "type": "title",
+            "name": "Level Object Optimization (LDM)"
+        },
+        "ultra-ldm": {
+            "type": "bool",
+            "name": "Ultra Low Detail Mode (Strip High Detail)",
+            "description": "Completely skips loading high-detail decorative objects into PlayLayer, cutting RAM usage and CPU iteration time.",
+            "default": true
+        },
+        "strip-decorations": {
+            "type": "bool",
+            "name": "Strip All Decorations (Potato / Layout Mode)",
+            "description": "Skips all non-interactive decoration objects while keeping solids, hazards, portals, pads, orbs, and triggers intact.",
+            "default": false
+        },
+        "title-particles": {
+            "type": "title",
+            "name": "Particles & Player Effects"
+        },
+        "particle-mode": {
+            "type": "string",
+            "name": "Particle Optimization",
+            "description": "Controls CPU simulation & GPU drawing of particles in PlayLayer. 'Reduced' caps emission/updates; 'Disabled' removes them completely.",
+            "default": "Reduced",
+            "one-of": [
+                "Vanilla",
+                "Reduced",
+                "Disabled"
+            ]
+        },
+        "particle-cap": {
+            "type": "int",
+            "name": "Max Particles Per System (Reduced Mode)",
+            "description": "Maximum active particles allowed per CCParticleSystem when Particle Optimization is set to Reduced.",
+            "default": 24,
+            "min": 4,
+            "max": 200,
+            "control": {
+                "slider": true,
+                "input": true
+            }
+        },
+        "no-player-particles": {
+            "type": "bool",
+            "name": "Disable Player Glitter & Death Explosion",
+            "description": "Disables player drag/glitter particles and death explosion bursts.",
+            "default": true
+        },
+        "no-player-glow": {
+            "type": "bool",
+            "name": "Disable Player Glow & Trail",
+            "description": "Hides player glow outline and regular streak trail to reduce overdraw.",
+            "default": false
+        },
+        "title-system": {
+            "type": "title",
+            "name": "System & Diagnostics"
+        },
+        "auto-purge-textures": {
+            "type": "bool",
+            "name": "Auto-Purge Unused Textures",
+            "description": "Frees unused cached OpenGL textures when exiting a level to prevent RAM bloat and stutters.",
+            "default": true
+        },
+        "high-process-priority": {
+            "type": "bool",
+            "name": "High Process Priority (Windows)",
+            "description": "Sets Geometry Dash process priority to High on Windows to reduce frame-time spikes.",
+            "default": true
+        },
+        "show-fps-hud": {
+            "type": "bool",
+            "name": "Show FPS & Frame-Time HUD",
+            "description": "Displays an ultra-lightweight FPS and frame-time (ms) counter in the top-left corner during gameplay.",
+            "default": true
+        }
+    }
+}
